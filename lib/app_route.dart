@@ -20,7 +20,7 @@ class AppRoute {
 
       case detailsScreen:
         return MaterialPageRoute(
-          builder: (context) => FlightDetails(),
+          builder: (context) => FlightDetails(flight: {},),
         );
     }
   }
