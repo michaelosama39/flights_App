@@ -15,7 +15,7 @@ class AppRoute {
 
       case selectScreen:
         return MaterialPageRoute(
-          builder: (context) => FlightsSelect(),
+          builder: (context) => FlightsSelect(flights_select: '',),
         );
 
       case detailsScreen:

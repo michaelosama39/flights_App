@@ -1,7 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flights_app/bussiness_logic/conestants/my_colors.dart';
-import 'package:flights_app/flights_search/presentation/widgets/app_bar.dart';
 import 'package:flights_app/flights_search/presentation/widgets/dropdown_search_flight.dart';
 import 'package:flights_app/flights_search/presentation/widgets/raised_button_of_show.dart';
 import 'package:flights_app/flights_search/presentation/widgets/text_field_of_date.dart';
@@ -51,7 +50,7 @@ class _FlightsSearchState extends State<FlightsSearch> {
 
   searchFlights() {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => FlightsSelect()),
+      MaterialPageRoute(builder: (context) => FlightsSelect(flights_select: '$value_of_From-$value_of_To',)),
     );
   }
 
@@ -59,24 +58,16 @@ class _FlightsSearchState extends State<FlightsSearch> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.mybackgroud,
-      appBar: AppBarProject("Flights Search"),
+      appBar: AppBar(
+        title: Text('Flights Search' , style: TextStyle(color: Colors.black),),
+        backgroundColor: MyColors.mybackgroud,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(13.0),
         child: Column(
           children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Search Flights',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
             SizedBox(
-              height: 15,
+              height: 6,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
