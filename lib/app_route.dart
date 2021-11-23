@@ -15,12 +15,12 @@ class AppRoute {
 
       case selectScreen:
         return MaterialPageRoute(
-          builder: (context) => FlightsSelect(flights_select: '',),
+          builder: (context) => FlightsSelect(flights_select: '', value_of_traveller: '', value_of_class: '', value_of_date: '',),
         );
 
       case detailsScreen:
         return MaterialPageRoute(
-          builder: (context) => FlightDetails(flight: {},),
+          builder: (context) => FlightDetails(flight: {}, value_of_traveller: '', value_of_class: '', value_of_date: '',),
         );
     }
   }

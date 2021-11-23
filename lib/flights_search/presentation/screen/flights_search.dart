@@ -17,13 +17,14 @@ class FlightsSearch extends StatefulWidget {
 enum Flights { one_way, round_trip, multi_city }
 
 class _FlightsSearchState extends State<FlightsSearch> {
-  List<String> list_of_Passenger = ['1 Adult', '1 Child'];
-  List<String> list_of_Class = ['Business', 'Businesss'];
+  List<String> list_of_Traveller = ['1 Adult', '1 Child' , '1 Infant'];
+  List<String> list_of_Class = ['Business', 'Accrual' , 'economy'];
   List<String> list_of_cities = [];
   late String value_of_To;
   late String value_of_From;
   late String value_of_Class;
   late String value_of_Traveller;
+  late String value_of_date;
 
   Flights type = Flights.one_way;
 
@@ -50,7 +51,14 @@ class _FlightsSearchState extends State<FlightsSearch> {
 
   searchFlights() {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => FlightsSelect(flights_select: '$value_of_From-$value_of_To',)),
+      MaterialPageRoute(
+        builder: (context) => FlightsSelect(
+          flights_select: '$value_of_From-$value_of_To',
+          value_of_date: value_of_date,
+          value_of_class: value_of_Class,
+          value_of_traveller: value_of_Traveller,
+        ),
+      ),
     );
   }
 
@@ -59,7 +67,10 @@ class _FlightsSearchState extends State<FlightsSearch> {
     return Scaffold(
       backgroundColor: MyColors.mybackgroud,
       appBar: AppBar(
-        title: Text('Flights Search' , style: TextStyle(color: Colors.black),),
+        title: Text(
+          'Flights Search',
+          style: TextStyle(color: Colors.black),
+        ),
         backgroundColor: MyColors.mybackgroud,
       ),
       body: Padding(
@@ -232,7 +243,10 @@ class _FlightsSearchState extends State<FlightsSearch> {
             Row(
               children: [
                 Expanded(
-                  child: TextFieldOfDate('Date'),
+                  child: TextFieldOfDate('Date', (value) {
+                    value_of_date = value;
+                    print(value_of_date);
+                  }),
                 ),
                 SizedBox(
                   width: 7,
@@ -258,7 +272,7 @@ class _FlightsSearchState extends State<FlightsSearch> {
             ),
             DropdownSearchFlight(
               'Traveller',
-              list_of_Passenger,
+              list_of_Traveller,
               Icon(
                 Icons.airline_seat_recline_normal,
                 color: Colors.black,

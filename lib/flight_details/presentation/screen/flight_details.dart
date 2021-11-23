@@ -4,8 +4,17 @@ import 'package:flutter/material.dart';
 
 class FlightDetails extends StatefulWidget {
   final Map flight;
+  final String value_of_date;
+  final String value_of_class;
+  final String value_of_traveller;
 
-  const FlightDetails({Key? key, required this.flight}) : super(key: key);
+  const FlightDetails(
+      {Key? key,
+      required this.flight,
+      required this.value_of_date,
+      required this.value_of_class,
+      required this.value_of_traveller})
+      : super(key: key);
 
   @override
   _FlightDetailsState createState() => _FlightDetailsState();
@@ -36,9 +45,10 @@ class _FlightDetailsState extends State<FlightDetails> {
                 color: Colors.black,
               )),
               Expanded(
-                  child: Container(
-                color: MyColors.mybackgroud,
-              )),
+                child: Container(
+                  color: MyColors.mybackgroud,
+                ),
+              ),
             ],
           ),
           Center(
@@ -54,64 +64,174 @@ class _FlightDetailsState extends State<FlightDetails> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          RaisedButton(
+                          FlatButton(
+                            child: Text(
+                              widget.value_of_class,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(20.0),
+                              side: BorderSide(color: Colors.black, width: 1),
+                            ),
                             onPressed: null,
                           ),
                           Row(
                             children: [
-                              Text('SLM'),
+                              Text(
+                                'SLM',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Icon(Icons.flight_takeoff_outlined),
-                              Text('BTL'),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'BTL',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
                             ],
                           ),
                         ],
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 8,
+                      ),
                       Container(
                         alignment: Alignment.centerLeft,
-                        child: Text('1 Flight Ticket'),
+                        child: Text(
+                          '1 Flight Ticket',
+                          style: TextStyle(color: Colors.black, fontSize: 22),
+                        ),
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 22,
+                      ),
                       Table(
                         children: [
-                          TableRow(
-                            children: [
-                              Text('Passengers'),
-                              Text('Date'),
-                            ]
-                          ),
-                          TableRow(
-                              children: [
-                                Text('2 Adults'),
-                                Text('12 Feb, 2020'),
-                              ]
-                          ),
-                          TableRow(
-                              children: [
-                                Text('Flight No.'),
-                                Text('Gate'),
-                              ]
-                          ),
-                          TableRow(
-                              children: [
-                                Text('BKN7'),
-                                Text('66 B'),
-                              ]
-                          ),
-                          TableRow(
-                              children: [
-                                Text('Class'),
-                                Text('Seat'),
-                              ]
-                          ),
-                          TableRow(
-                              children: [
-                                Text('Business'),
-                                Text('21 B'),
-                              ]
-                          ),
+                          TableRow(children: [
+                            Text(
+                              'Passengers',
+                              style: TextStyle(fontSize: 17),
+                            ),
+                            Text(
+                              'Date',
+                              style: TextStyle(fontSize: 17),
+                            ),
+                          ]),
                         ],
                       ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Table(
+                        children: [
+                          TableRow(children: [
+                            Text(
+                              widget.value_of_traveller,
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.black),
+                            ),
+                            Text(
+                              widget.value_of_date,
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.black),
+                            ),
+                          ]),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Table(
+                        children: [
+                          TableRow(children: [
+                            Text(
+                              'Flight No.',
+                              style: TextStyle(fontSize: 17),
+                            ),
+                            Text(
+                              'Gate',
+                              style: TextStyle(fontSize: 17),
+                            ),
+                          ]),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Table(
+                        children: [
+                          TableRow(children: [
+                            Text(
+                              widget.flight['flight no'],
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.black),
+                            ),
+                            Text(
+                              '66 B',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.black),
+                            ),
+                          ]),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Table(
+                        children: [
+                          TableRow(children: [
+                            Text(
+                              'Class',
+                              style: TextStyle(fontSize: 17),
+                            ),
+                            Text(
+                              'Seat',
+                              style: TextStyle(fontSize: 17),
+                            ),
+                          ]),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Table(
+                        children: [
+                          TableRow(children: [
+                            Text(
+                              widget.value_of_class,
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.black),
+                            ),
+                            Text(
+                              '21 B',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.black),
+                            ),
+                          ]),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 22,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                      Image.network(
+                        'https://user-images.githubusercontent.com/473529/39586135-ff598000-4ebb-11e8-81f9-5698df79111f.png',
+                        height: 90,
+                        width: 250,
+                      ),
+                      Text('98889 0958 1758 1287'),
                     ],
                   ),
                 ),

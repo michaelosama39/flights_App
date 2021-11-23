@@ -1,7 +1,7 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 // GetStorage
-Widget DropdownSearchFlight(String text, List<String> list, Icon icon,Function(String) onChanged) {
+Widget DropdownSearchFlight(String text, List<String> list, Icon icon, Function(String) onChanged) {
   String? seleced;
   return DropdownSearch<String>(
     validator: (value) => value == null ? "required field" : null,

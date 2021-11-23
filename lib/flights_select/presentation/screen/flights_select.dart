@@ -6,7 +6,17 @@ import 'package:flutter/material.dart';
 
 class FlightsSelect extends StatefulWidget {
   final String flights_select;
-  const FlightsSelect({Key? key , required this.flights_select}) : super(key: key);
+  final String value_of_date;
+  final String value_of_class;
+  final String value_of_traveller;
+
+  const FlightsSelect(
+      {Key? key,
+      required this.flights_select,
+      required this.value_of_date,
+      required this.value_of_class,
+      required this.value_of_traveller})
+      : super(key: key);
 
   @override
   _FlightsSelectState createState() => _FlightsSelectState();
@@ -19,9 +29,10 @@ class _FlightsSelectState extends State<FlightsSelect> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _ref = FirebaseDatabase.instance.reference()
-    .child('flights')
-    .child(widget.flights_select);
+    _ref = FirebaseDatabase.instance
+        .reference()
+        .child('flights')
+        .child(widget.flights_select);
   }
 
   @override
@@ -29,14 +40,28 @@ class _FlightsSelectState extends State<FlightsSelect> {
     return Scaffold(
       backgroundColor: MyColors.mybackgroud,
       appBar: AppBar(
-        title: Text('Flights Select' , style: TextStyle(color: Colors.black),),
+        title: Text(
+          'Flights Select',
+          style: TextStyle(color: Colors.black),
+        ),
         backgroundColor: MyColors.mybackgroud,
-        leading: Icon(Icons.arrow_back , color: Colors.black,),
+        leading: Icon(
+          Icons.arrow_back,
+          color: Colors.black,
+        ),
       ),
-      body: FirebaseAnimatedList(query: _ref, itemBuilder: (context, snapshot, animation, index) {
-        Map value = snapshot.value;
-        return FlightItem(flight: value,);
-      },),
+      body: _ref == null ? Center(child: Text('Connetion Errrror!!'),) : FirebaseAnimatedList(
+        query: _ref,
+        itemBuilder: (context, snapshot, animation, index) {
+          Map value = snapshot.value;
+          return FlightItem(
+            flight: value,
+            value_of_date: widget.value_of_date,
+            value_of_class: widget.value_of_class,
+            value_of_traveller: widget.value_of_traveller,
+          );
+        },
+      ),
     );
   }
 }

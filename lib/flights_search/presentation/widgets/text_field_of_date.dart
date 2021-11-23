@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-Widget TextFieldOfDate(String text) {
+Widget TextFieldOfDate(String text , Function(String) onChanged) {
+  String? seleced;
   return TextField(
     keyboardType: TextInputType.datetime,
     decoration: InputDecoration(
@@ -23,5 +24,9 @@ Widget TextFieldOfDate(String text) {
       ),
       labelStyle: TextStyle(color: Colors.black),
     ),
+    onChanged: (value) {
+      onChanged(value);
+      seleced = value;
+    },
   );
 }

@@ -4,7 +4,17 @@ import 'package:flutter/material.dart';
 
 class FlightItem extends StatelessWidget {
   final Map flight;
-  const FlightItem({Key? key, required this.flight}) : super(key: key);
+  final String value_of_date;
+  final String value_of_class;
+  final String value_of_traveller;
+
+  const FlightItem(
+      {Key? key,
+      required this.flight,
+      required this.value_of_date,
+      required this.value_of_class,
+      required this.value_of_traveller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +23,13 @@ class FlightItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => FlightDetails(flight: flight,)),
+            MaterialPageRoute(
+                builder: (context) => FlightDetails(
+                      flight: flight,
+                      value_of_date: value_of_date,
+                      value_of_class: value_of_class,
+                      value_of_traveller: value_of_traveller,
+                    )),
           );
         },
         child: Card(
@@ -29,7 +45,13 @@ class FlightItem extends StatelessWidget {
                       width: 80,
                       height: 65,
                     ),
-                    Text( flight['price'], style: TextStyle(color: MyColors.myYellow, fontSize: 17 , fontWeight: FontWeight.bold),),
+                    Text(
+                      flight['price'],
+                      style: TextStyle(
+                          color: MyColors.myYellow,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
                 Row(
@@ -37,21 +59,38 @@ class FlightItem extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        Text(flight['flight time'] , style: TextStyle(color: Colors.black , fontSize: 18),),
-                        Text('AMS, Mon' , style: TextStyle(color: MyColors.mygray2, fontSize: 15),),
+                        Text(
+                          flight['flight time'],
+                          style: TextStyle(color: Colors.black, fontSize: 18),
+                        ),
+                        Text(
+                          'AMS, Mon',
+                          style:
+                              TextStyle(color: MyColors.mygray2, fontSize: 15),
+                        ),
                       ],
                     ),
                     SizedBox(
                       width: 16,
                     ),
-                    Icon(Icons.flight_takeoff , size: 30,),
+                    Icon(
+                      Icons.flight_takeoff,
+                      size: 30,
+                    ),
                     SizedBox(
                       width: 16,
                     ),
                     Column(
                       children: [
-                        Text(flight['land time'] , style: TextStyle(color: Colors.black , fontSize: 18),),
-                        Text('DEL, Tue' , style: TextStyle(color: MyColors.mygray2, fontSize: 15),),
+                        Text(
+                          flight['land time'],
+                          style: TextStyle(color: Colors.black, fontSize: 18),
+                        ),
+                        Text(
+                          'DEL, Tue',
+                          style:
+                              TextStyle(color: MyColors.mygray2, fontSize: 15),
+                        ),
                       ],
                     ),
                     SizedBox(
@@ -59,8 +98,15 @@ class FlightItem extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Text('Flight No.'  , style: TextStyle(color: Colors.black , fontSize: 18),),
-                        Text(flight['flight no'] , style: TextStyle(color: MyColors.mygray2, fontSize: 15),),
+                        Text(
+                          'Flight No.',
+                          style: TextStyle(color: Colors.black, fontSize: 18),
+                        ),
+                        Text(
+                          flight['flight no'],
+                          style:
+                              TextStyle(color: MyColors.mygray2, fontSize: 15),
+                        ),
                       ],
                     ),
                   ],
@@ -70,9 +116,18 @@ class FlightItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text('Duration: ' , style: TextStyle(fontSize: 15, color: MyColors.mygray2),),
-                    Text('17h 15m' , style: TextStyle(fontSize: 15, color: Colors.black),),
-                    Text('| Non - Stop', style: TextStyle(fontSize: 15, color: MyColors.mygray2),),
+                    Text(
+                      'Duration: ',
+                      style: TextStyle(fontSize: 15, color: MyColors.mygray2),
+                    ),
+                    Text(
+                      '17h 15m',
+                      style: TextStyle(fontSize: 15, color: Colors.black),
+                    ),
+                    Text(
+                      '| Non - Stop',
+                      style: TextStyle(fontSize: 15, color: MyColors.mygray2),
+                    ),
                   ],
                 ),
                 SizedBox(
